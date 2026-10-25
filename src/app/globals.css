@@ -796,8 +796,15 @@ button {
 /* One shared 4:5 frame, so photos of different shapes line up as equals. */
 .about-photos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(5, 1fr); /* five photos, one row */
   gap: 16px;
+}
+
+@media (max-width: 760px) {
+  .about-photos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
 }
 
 .about-photos img {
