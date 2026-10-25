@@ -384,6 +384,7 @@ export const PROJECTS: Project[] = [
     category: "games",
     blurb:
       "A cozy Roblox world of dress-up, rooms full of props and drag-and-drop play, where players keep their own avatars, restyled into its look.",
+    links: [{ label: "Play on Roblox", url: "https://www.roblox.com/games/117658689486791/Play-World" }],
   },
   {
     slug: "isles-of-dusk",
@@ -393,6 +394,7 @@ export const PROJECTS: Project[] = [
     category: "games",
     blurb:
       "A card battler of Philippine folklore on Roblox and phones: claim the board row by row, island after island.",
+    links: [{ label: "Play on Roblox", url: "https://www.roblox.com/games/87067473966880/Isles-of-Dusk" }],
   },
   {
     slug: "run-visuals",
@@ -428,6 +430,40 @@ export const PROJECTS: Project[] = [
       { label: "App Store", url: "https://apps.apple.com/us/app/run-story/id6737940528" },
       { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.uiuxartist.runstory.release" },
     ],
+  },
+  {
+    slug: "ui-shadows-corners",
+    title: "UI Shadows & Individual Corners",
+    start: "2026-06",
+    employer: "roblox",
+    category: "tools",
+    blurb: "Native drop shadows for any UI element and per-corner rounding, built into the Roblox engine.",
+    links: [
+      { label: "Announcement on the DevForum", url: "https://devforum.roblox.com/t/full-release-new-ui-capabilities-shadows-individual-corners/4636263" },
+      { label: "UIShadow docs", url: "https://create.roblox.com/docs/reference/engine/classes/UIShadow" },
+    ],
+  },
+  {
+    slug: "style-query",
+    title: "StyleQuery & More Styling",
+    start: "2026-05",
+    employer: "roblox",
+    category: "tools",
+    blurb: "Container and media queries for Roblox UI: interfaces that adapt to size, aspect ratio and text size settings with no scripts.",
+    links: [
+      { label: "Announcement on the DevForum", url: "https://devforum.roblox.com/t/full-release-stylequery-more-styling-features/4566519" },
+      { label: "Docs", url: "https://create.roblox.com/docs/reference/engine/classes/StyleQuery" },
+      { label: "Demo on Roblox", url: "https://www.roblox.com/games/116745195863753/StyleQuery-Demo" },
+    ],
+  },
+  {
+    slug: "designing-ui-tips",
+    title: "Designing UI: Tips & Best Practices",
+    start: "2024-07",
+    employer: "roblox",
+    category: "talks",
+    blurb: "A DevForum guide to cross-platform UI for creators who don't code: mobile first, scale vs. offset, anchoring and placement.",
+    links: [{ label: "Read on the DevForum", url: "https://devforum.roblox.com/t/designing-ui-tips-and-best-practices/3074034" }],
   },
   {
     slug: "input-action-manager",
@@ -473,6 +509,7 @@ export const PROJECTS: Project[] = [
     category: "tools",
     blurb:
       "A Photoshop-like button editor built inside Roblox in a weekend: color pickers, documents, a remixable feed and premium effects.",
+    links: [{ label: "Play on Roblox", url: "https://www.roblox.com/games/102189464014234/Button-Designer" }],
   },
   {
     slug: "gdc-2022",

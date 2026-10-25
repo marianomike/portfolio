@@ -12,4 +12,14 @@ It shipped as a Studio beta in May 2025 alongside UI Styling, Roblox's CSS-inspi
 - **Tokens** are shared values, like one named color used across many properties.
 - **Themes** are swappable sets of values, like light and dark mode, that can also switch at runtime.
 
+
+## From the announcement
+
+![](/work/style-editor/df-01.gif)
+![](/work/style-editor/df-02.jpg)
+![](/work/style-editor/df-03.jpg)
+![](/work/style-editor/df-04.jpg)
+![](/work/style-editor/df-05.jpg)
+![](/work/style-editor/df-06.jpg)
+
 <div class="video"><iframe src="https://www.youtube.com/embed/_k1ea0OIKaU" loading="lazy" allowfullscreen></iframe></div>
