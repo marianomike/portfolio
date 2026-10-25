@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+Mike Mariano's portfolio and resume at uiuxartist.com: one timeline from 2000 to now, with a Google Photos–style year scrubber and a printable resume view.
 
-First, run the development server:
+## Editing
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Jobs, projects, education:** `src/content/career.ts` is the single source for the timeline, the resume and the project pages.
+- **A project's write-up:** `content/projects/<slug>.md`. Optional frontmatter: `role`, `tools` (list), `video` (embed URL).
+- **A project's images:** `public/work/<slug>/`. `cover.*` is the card image; every other image is the gallery, in filename order.
+
+Project URLs match the old Adobe Portfolio paths (`/run-story/`, `/star-wars-commander/`…); the old hub pages (`/zynga/`, `/disney-interactive/`, `/about/`…) redirect to the timeline.
+
+## Running
+
+```sh
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # static site in out/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploying
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Pushing to `main` builds and deploys to GitHub Pages (`.github/workflows/deploy.yml`). `public/CNAME` sets the custom domain. One-time setup: repo Settings → Pages → Source: GitHub Actions, then point the domain's DNS at GitHub Pages (A records 185.199.108–111.153 for the apex, CNAME `www` → `<user>.github.io`).
