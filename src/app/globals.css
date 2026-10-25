@@ -793,15 +793,16 @@ button {
   margin-top: 18px;
 }
 
-/* Masonry columns keep portrait and landscape photos at their own shapes. */
+/* One shared 4:5 frame, so photos of different shapes line up as equals. */
 .about-photos {
-  columns: 3 260px;
-  column-gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
 }
 
 .about-photos img {
   width: 100%;
-  margin-bottom: 16px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
   border-radius: var(--radius);
-  break-inside: avoid;
 }
