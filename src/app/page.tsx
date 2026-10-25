@@ -7,9 +7,10 @@ export default function Home() {
   const chapters = buildTimeline();
   const covers: Record<string, Cover> = {};
   for (const p of PROJECTS) {
-    const { cover, icon } = projectMedia(p.slug);
+    const { cover, icon, gallery } = projectMedia(p.slug);
     if (cover) covers[p.slug] = { src: cover };
     else if (icon) covers[p.slug] = { src: icon, icon: true };
+    else if (gallery[0]) covers[p.slug] = { src: gallery[0] };
   }
   const firstYear = chapters.at(-1)!.start;
 

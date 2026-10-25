@@ -584,6 +584,8 @@ button {
 
 .project-cover {
   width: 100%;
+  max-height: min(560px, 70vh);
+  object-fit: cover;
   border-radius: var(--radius);
 }
 
@@ -604,14 +606,45 @@ button {
 }
 
 .prose {
-  max-width: 680px;
   margin: 56px 0;
   font-size: 18px;
 }
 
+/* Text keeps a reading measure; images and videos use the full width. */
+.prose > p,
+.prose > h2,
+.prose > ul {
+  max-width: 680px;
+}
+
 .prose h2 {
   font: 400 34px/1.15 var(--font-display), serif;
-  margin: 48px 0 12px;
+  margin: 64px 0 16px;
+}
+
+.prose a {
+  text-underline-offset: 3px;
+}
+
+.prose img {
+  width: 100%;
+  border-radius: var(--radius);
+}
+
+.prose > p:has(> img) {
+  max-width: none;
+}
+
+/* A run of images becomes a grid, so phone screenshots sit side by side. */
+.prose > p:has(> img + img) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.prose .video {
+  margin: 24px 0;
 }
 
 .gallery {

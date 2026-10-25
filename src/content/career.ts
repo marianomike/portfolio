@@ -401,7 +401,11 @@ export const PROJECTS: Project[] = [
     employer: "finish-line-labs",
     category: "apps",
     blurb:
-      "Custom graphics and videos from Strava, Garmin and Apple Health data, on iOS and Android.",
+      "Custom graphics, stickers and animated videos from Strava, Garmin and Apple Health data, on iOS and Android.",
+    links: [
+      { label: "App Store", url: "https://apps.apple.com/us/app/run-visuals/id6759010004" },
+      { label: "Google Play", url: "https://play.google.com/store/apps/details?id=info.finishlinelabs.runcards" },
+    ],
   },
   {
     slug: "media-stitch",
@@ -409,7 +413,8 @@ export const PROJECTS: Project[] = [
     start: "2025-01",
     employer: "finish-line-labs",
     category: "apps",
-    blurb: "Combines photos and videos into one shareable video, and slices panoramas into seamless carousels.",
+    blurb: "Combines photos and videos into one shareable video, with simple layouts and transitions that keep the focus on the content.",
+    links: [{ label: "App Store", url: "https://apps.apple.com/us/app/media-stitch/id6751826519" }],
   },
   {
     slug: "run-story",
@@ -418,15 +423,23 @@ export const PROJECTS: Project[] = [
     employer: "finish-line-labs",
     category: "apps",
     blurb:
-      "A Strava-powered stats photo and video editor. 20k+ iOS downloads after runners found it, then an Android version.",
+      "Run stats from Strava or Apple Health on top of your photos and videos, native on iOS and Android. 20k+ iOS downloads.",
+    links: [
+      { label: "App Store", url: "https://apps.apple.com/us/app/run-story/id6737940528" },
+      { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.uiuxartist.runstory.release" },
+    ],
   },
   {
     slug: "roblox",
-    title: "UI Styling & Input",
+    title: "Style Editor & Studio UI",
     start: "2020-12",
     employer: "roblox",
     category: "tools",
-    blurb: "The Style Editor, UI Styling and the Input Action Manager for Roblox Studio.",
+    blurb: "The Style Editor for UI styles, design tokens and themes in Roblox Studio, plus RDC, the Beyond the Dark showcase and UI experiments.",
+    links: [
+      { label: "UI Styling on the DevForum", url: "https://devforum.roblox.com/t/studio-beta-introducing-ui-styling/3660722" },
+      { label: "Beyond the Dark docs", url: "https://create.roblox.com/docs/resources/beyond-the-dark/user-interface" },
+    ],
   },
   {
     slug: "button-designer",
@@ -443,7 +456,9 @@ export const PROJECTS: Project[] = [
     start: "2022-03",
     employer: "roblox",
     category: "talks",
-    blurb: "The GDC 2022 UX Summit.",
+    blurb:
+      "A UX Summit session on what succeeding as a designer really takes: work ethic, understanding your user, relationships and believing in yourself.",
+    links: [{ label: "Watch on GDC Vault", url: "https://gdcvault.com/play/1027844/UX-Summit-It-s-Not" }],
   },
   {
     slug: "stream-raiders",
@@ -452,7 +467,24 @@ export const PROJECTS: Project[] = [
     end: "2020-12",
     employer: "captain",
     category: "games",
-    blurb: "Captain.tv's flagship game, played by Twitch streamers together with their audiences.",
+    blurb: "A game built for Twitch streamers to play with their viewers alongside their main content. I was the only UI/UX designer.",
+    links: [{ label: "streamcaptain.com", url: "https://streamcaptain.com" }],
+  },
+  {
+    slug: "the-game-ux-interview-series",
+    title: "The Game UX Interview Series",
+    start: "2018-03",
+    category: "talks",
+    blurb: "A Medium publication where each game UX interviewee conducts the next interview, plus a 400+ member community.",
+    links: [{ label: "Read on Medium", url: "https://medium.com/game-ux-interviews" }],
+  },
+  {
+    slug: "prototyping-ui-in-unity-tutorial",
+    title: "Prototyping UI in Unity",
+    start: "2018-01",
+    category: "talks",
+    blurb: "A tutorial series that teaches designers without game or 3D experience to prototype UI in Unity.",
+    links: [{ label: "Read on Medium", url: "https://medium.com/@marianomike/prototyping-ui-in-unity-introduction-db12458020ae" }],
   },
   {
     slug: "game-of-thrones-slots-casino",
@@ -461,7 +493,7 @@ export const PROJECTS: Project[] = [
     end: "2019-04",
     employer: "zynga-2018",
     category: "games",
-    blurb: "Led UX for Zynga's Game of Thrones slots game.",
+    blurb: "Six months helping the team define UI/UX standards and pipelines, while hands-on with wireframes, visuals, prototypes and Unity.",
   },
   {
     slug: "star-wars-rivals",
@@ -470,7 +502,7 @@ export const PROJECTS: Project[] = [
     end: "2018-10",
     employer: "disney",
     category: "games",
-    blurb: "The first Star Wars real-time shooter designed for mobile. I set its UI direction and led the UI team.",
+    blurb: "A mobile third-person shooter. I set its UI direction, built the UI pipeline and led the UI team.",
   },
   {
     slug: "my-last-run",
@@ -478,7 +510,41 @@ export const PROJECTS: Project[] = [
     start: "2016-12",
     end: "2017-03",
     category: "apps",
-    blurb: "My first iOS app: run-stat photos from Apple Health data, years before Run Story.",
+    blurb: "My first iOS app, built to teach myself Swift: photos of your run stats from Apple Health. Open source.",
+    links: [
+      { label: "App Store", url: "https://apps.apple.com/us/app/my-last-run/id1202621918" },
+      { label: "Source on GitHub", url: "https://github.com/marianomike/mylastrun" },
+    ],
+  },
+  {
+    slug: "disney-lucasfilm-games",
+    title: "Tools, Prototypes & Exploration",
+    start: "2013-10",
+    end: "2018-10",
+    employer: "disney",
+    category: "tools",
+    blurb: "An Illustrator-to-Unity UI exporter I wrote, AR prototypes, pipeline flows, style guides and visual exploration at Lucasfilm Games.",
+  },
+  {
+    slug: "sketch-plugins",
+    title: "Sketch Plugins",
+    start: "2016-06",
+    category: "tools",
+    blurb: "Open-source plugins that take repetitive work out of Sketch: shared color palettes, organizing and duplicating symbols.",
+    links: [{ label: "GitHub", url: "https://github.com/marianomike?tab=repositories" }],
+  },
+  {
+    slug: "the-beginners-guide-to-writing-sketch-plugins",
+    title: "The Beginner's Guide to Writing Sketch Plugins",
+    start: "2016-08",
+    category: "talks",
+    blurb: "A seven-part series for designers writing their first Sketch plugin, shared by Sketch and Smashing Magazine.",
+    links: [
+      {
+        label: "Read on Medium",
+        url: "https://medium.com/@marianomike/the-beginners-guide-to-writing-sketch-plugins-part-1-28a5e3f01c68",
+      },
+    ],
   },
   {
     slug: "star-wars-commander",
@@ -487,16 +553,25 @@ export const PROJECTS: Project[] = [
     end: "2016-07",
     employer: "disney",
     category: "games",
-    blurb: "A combat strategy game built from scratch, which I worked on from pre-production through live ops.",
+    blurb: "The longest-running Star Wars mobile game: 1M daily players at its peak and $100M+ lifetime revenue. Built from scratch.",
+  },
+  {
+    slug: "universe",
+    title: "Samsung Universe",
+    start: "2012-12",
+    end: "2013-10",
+    employer: "samsung",
+    category: "apps",
+    blurb: "An unreleased social app for Samsung users. UX, visual design and specs; I managed a junior designer and three interns.",
   },
   {
     slug: "farmville-mobile",
-    title: "FarmVille 2 Mobile",
+    title: "FarmVille Mobile",
     start: "2012-08",
     end: "2012-12",
     employer: "zynga",
     category: "games",
-    blurb: "Led UI for FarmVille 2 on mobile.",
+    blurb: "Early concepts for bringing FarmVille 2 from Facebook to phones: tech, visual design and UX.",
   },
   {
     slug: "castleville",
@@ -505,7 +580,7 @@ export const PROJECTS: Project[] = [
     end: "2012-08",
     employer: "zynga",
     category: "games",
-    blurb: "Senior UI designer on CastleVille.",
+    blurb: "New features, illustration, animation and implementation for the fifth most popular game on Facebook.",
   },
   {
     slug: "mafia-wars-2",
@@ -514,7 +589,7 @@ export const PROJECTS: Project[] = [
     end: "2011-12",
     employer: "zynga",
     category: "games",
-    blurb: "Led UI for Mafia Wars 2.",
+    blurb: "The Flash sequel to Mafia Wars. I led the UI team and made production assets and animation.",
   },
   {
     slug: "mafia-wars",
@@ -523,7 +598,7 @@ export const PROJECTS: Project[] = [
     end: "2010-09",
     employer: "zynga",
     category: "games",
-    blurb: "Led UI for Mafia Wars.",
+    blurb: "One of Facebook's biggest games: 3M daily players and close to $1M a day at its peak. I led the look and feel.",
   },
   {
     slug: "microsoft-advertising",
@@ -532,7 +607,7 @@ export const PROJECTS: Project[] = [
     end: "2009-05",
     employer: "microsoft",
     category: "web",
-    blurb: "Rich interactive ads for Kia, MTV, Sprite, ESPN and more.",
+    blurb: "Rich media banners, homepage takeovers and microsites for Got Milk?, Kia, Sprite, Amway and more.",
   },
 ];
 

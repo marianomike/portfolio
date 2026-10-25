@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# recovered Adobe Portfolio (images/videos), kept locally only
+/_archive/

@@ -10,7 +10,8 @@ import { yearRange } from "@/lib/timeline";
 const ALIASES: Record<string, string> = {
   zynga: "/#zynga",
   "disney-interactive": "/#disney",
-  "disney-lucasfilm-games": "/#disney",
+  "sketch-plugin-duplicate-symbol": "/sketch-plugins/",
+  "sketch-plugin-organize-symbols": "/sketch-plugins/",
   projects: "/",
   about: "/",
   contact: "/",
@@ -49,6 +50,8 @@ export default async function ProjectPage({ params }: Props) {
   const employer = EMPLOYERS.find((e) => e.id === project.employer);
   const { cover, icon, gallery } = projectMedia(slug);
   const body = projectBody(slug);
+  // Images placed in the write-up aren't repeated in the gallery.
+  const extra = gallery.filter((src) => !body?.html.includes(src));
 
   return (
     <main className="project">
@@ -93,9 +96,9 @@ export default async function ProjectPage({ params }: Props) {
         </div>
       )}
       {body && <div className="prose" dangerouslySetInnerHTML={{ __html: body.html }} />}
-      {gallery.length > 0 && (
+      {extra.length > 0 && (
         <div className="gallery">
-          {gallery.map((src) => (
+          {extra.map((src) => (
             <img key={src} src={src} alt="" loading="lazy" />
           ))}
         </div>
