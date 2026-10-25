@@ -1,14 +1,15 @@
-import CareerView from "@/components/CareerView";
+import CareerView, { type Cover } from "@/components/CareerView";
 import { PROFILE, PROJECTS } from "@/content/career";
 import { projectMedia } from "@/lib/projects";
 import { buildTimeline } from "@/lib/timeline";
 
 export default function Home() {
   const entries = buildTimeline();
-  const covers: Record<string, string> = {};
+  const covers: Record<string, Cover> = {};
   for (const p of PROJECTS) {
-    const { cover } = projectMedia(p.slug);
-    if (cover) covers[p.slug] = cover;
+    const { cover, icon } = projectMedia(p.slug);
+    if (cover) covers[p.slug] = { src: cover };
+    else if (icon) covers[p.slug] = { src: icon, icon: true };
   }
   const firstYear = Number(entries.at(-1)!.start.slice(0, 4));
 

@@ -6,10 +6,12 @@ import { CATEGORIES, EDUCATION, PROFILE, type Category, type Project } from "@/c
 import { dateRange, year, yearRange, type Entry } from "@/lib/timeline";
 import YearScrubber from "./YearScrubber";
 
+export type Cover = { src: string; icon?: boolean };
+
 type View = "timeline" | "resume";
 type Filter = Category | "all";
 
-export default function CareerView({ entries, covers }: { entries: Entry[]; covers: Record<string, string> }) {
+export default function CareerView({ entries, covers }: { entries: Entry[]; covers: Record<string, Cover> }) {
   const [view, setView] = useState<View>("timeline");
   const [filter, setFilter] = useState<Filter>("all");
 
@@ -102,17 +104,21 @@ function matches(project: Project, filter: Filter) {
   return filter === "all" || project.category === filter;
 }
 
-function TimelineEntry({ entry, filter, covers }: { entry: Entry; filter: Filter; covers: Record<string, string> }) {
+function TimelineEntry({ entry, filter, covers }: { entry: Entry; filter: Filter; covers: Record<string, Cover> }) {
   if (entry.kind === "side") {
-    const dim = !matches(entry.project, filter);
+    const shown = entry.projects.filter((p) => matches(p, filter));
     return (
-      <article id={entry.id} className={`entry side${dim ? " dim" : ""}`}>
+      <article id={entry.id} className={`entry side${shown.length ? "" : " dim"}`}>
         <header>
-          <p className="eyebrow">Side project · {yearRange(entry.start, entry.end)}</p>
+          <h3 className="company">{entry.projects.length > 1 ? "Side projects" : "Side project"}</h3>
         </header>
-        <div className="cards">
-          <ProjectCard project={entry.project} cover={covers[entry.project.slug]} />
-        </div>
+        {shown.length > 0 && (
+          <div className="cards">
+            {shown.map((p) => (
+              <ProjectCard key={p.slug} project={p} cover={covers[p.slug]} />
+            ))}
+          </div>
+        )}
       </article>
     );
   }
@@ -163,11 +169,11 @@ function TimelineEntry({ entry, filter, covers }: { entry: Entry; filter: Filter
   );
 }
 
-function ProjectCard({ project, cover }: { project: Project; cover?: string }) {
+function ProjectCard({ project, cover }: { project: Project; cover?: Cover }) {
   return (
     <Link href={`/${project.slug}/`} className="card">
-      <div className="thumb" data-empty={!cover || undefined}>
-        {cover ? <img src={cover} alt="" loading="lazy" /> : <span>{project.title}</span>}
+      <div className="thumb" data-empty={!cover || undefined} data-icon={cover?.icon || undefined}>
+        {cover ? <img src={cover.src} alt="" loading="lazy" /> : <span>{project.title}</span>}
       </div>
       <div className="card-text">
         <p className="card-title">{project.title}</p>

@@ -62,7 +62,7 @@ export const EMPLOYERS: Employer[] = [
       {
         title: "Owner",
         start: "2025-11",
-        bullets: ["The studio I publish my own iOS and Android apps under."],
+        bullets: ["The studio I publish my own iOS and Android apps and Roblox games under."],
       },
     ],
   },
@@ -359,6 +359,42 @@ export const EDUCATION = [
 // provisional until the Wayback pages are read.
 export const PROJECTS: Project[] = [
   {
+    slug: "dusk-dos",
+    title: "Dusk Dos",
+    start: "2026-10",
+    employer: "finish-line-labs",
+    category: "games",
+    blurb:
+      "Pusoy Dos as a roguelike: climb the Isles of Dusk table by table against creatures of Philippine folklore, each bending one rule.",
+  },
+  {
+    slug: "pusoy-dos",
+    title: "Pusoy Dos!",
+    start: "2026-10",
+    employer: "finish-line-labs",
+    category: "games",
+    blurb:
+      "The Filipino card game for iPhone and Android, with a journey through Philippine history and its real heroes on the court cards.",
+  },
+  {
+    slug: "play-world",
+    title: "Play World",
+    start: "2026-09",
+    employer: "finish-line-labs",
+    category: "games",
+    blurb:
+      "A cozy Roblox world of dress-up, rooms full of props and drag-and-drop play, where players keep their own avatars, restyled into its look.",
+  },
+  {
+    slug: "isles-of-dusk",
+    title: "Isles of Dusk",
+    start: "2026-10",
+    employer: "finish-line-labs",
+    category: "games",
+    blurb:
+      "A card battler of Philippine folklore on Roblox and phones: claim the board row by row, island after island.",
+  },
+  {
     slug: "run-visuals",
     title: "Run Visuals",
     start: "2026-04",
@@ -396,6 +432,7 @@ export const PROJECTS: Project[] = [
     slug: "button-designer",
     title: "Button Designer",
     start: "2026-05",
+    employer: "finish-line-labs",
     category: "tools",
     blurb:
       "A Photoshop-like button editor built inside Roblox in a weekend: color pickers, documents, a remixable feed and premium effects.",

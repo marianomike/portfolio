@@ -2,7 +2,7 @@ import { EMPLOYERS, PROJECTS, type Employer, type Project } from "@/content/care
 
 export type Entry =
   | { kind: "employer"; id: string; start: string; end?: string; employer: Employer; projects: Project[] }
-  | { kind: "side"; id: string; start: string; end?: string; project: Project };
+  | { kind: "side"; id: string; start: string; end?: string; projects: Project[] };
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -24,7 +24,7 @@ export function yearRange(start: string, end?: string) {
   return a === b ? `${a}` : `${a} – ${b}`;
 }
 
-/** Newest first. An employer spans its roles; side projects stand alone by their own dates. */
+/** Newest first. An employer spans its roles; side projects are grouped by the year they started. */
 export function buildTimeline(): Entry[] {
   const entries: Entry[] = EMPLOYERS.map((employer) => {
     const starts = employer.roles.map((r) => r.start).sort();
@@ -35,11 +35,17 @@ export function buildTimeline(): Entry[] {
       start: starts[0],
       end: ends.includes(undefined) ? undefined : ends.sort().at(-1),
       employer,
-      projects: PROJECTS.filter((p) => p.employer === employer.id),
+      projects: PROJECTS.filter((p) => p.employer === employer.id).sort((a, b) => b.start.localeCompare(a.start)),
     };
   });
+  const side = new Map<number, Project[]>();
   for (const project of PROJECTS.filter((p) => !p.employer)) {
-    entries.push({ kind: "side", id: project.slug, start: project.start, end: project.end, project });
+    const y = year(project.start);
+    side.set(y, [...(side.get(y) ?? []), project]);
+  }
+  for (const [y, projects] of side) {
+    const start = projects.map((p) => p.start).sort()[0];
+    entries.push({ kind: "side", id: `side-${y}`, start, projects });
   }
   // Current roles sort by start too, so Finish Line Labs (2025) leads Roblox (2020).
   return entries.sort((a, b) => b.start.localeCompare(a.start));

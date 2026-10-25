@@ -47,15 +47,16 @@ export default async function ProjectPage({ params }: Props) {
   const project = PROJECTS.find((p) => p.slug === slug);
   if (!project) notFound();
   const employer = EMPLOYERS.find((e) => e.id === project.employer);
-  const { cover, gallery } = projectMedia(slug);
+  const { cover, icon, gallery } = projectMedia(slug);
   const body = projectBody(slug);
 
   return (
     <main className="project">
-      <Link href={`/#${employer?.id ?? slug}`} className="back">
+      <Link href={`/#${employer?.id ?? `side-${project.start.slice(0, 4)}`}`} className="back">
         ← Timeline
       </Link>
       <header className="project-head">
+        {icon && <img className="project-icon" src={icon} alt="" />}
         <p className="eyebrow">
           {[employer?.name ?? "Side project", yearRange(project.start, project.end)].join(" · ")}
         </p>

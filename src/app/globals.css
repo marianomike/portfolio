@@ -336,6 +336,25 @@ button {
   object-fit: cover;
 }
 
+/* An app icon on a quiet field until real screenshots exist. */
+.thumb[data-icon] {
+  display: grid;
+  place-items: center;
+}
+
+.thumb[data-icon] img {
+  width: 34%;
+  height: auto;
+  border-radius: 22%;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.25);
+}
+
+.project-icon {
+  width: 88px;
+  border-radius: 22%;
+  margin-bottom: 24px;
+}
+
 .thumb[data-empty] {
   display: grid;
   place-items: center;
