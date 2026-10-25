@@ -4,8 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 // A Google Photos–style scrubber: a rail on the right edge with year labels at
 // the scroll position where each stop begins (a chapter, labeled by its start
-// year; the bubble shows the stop's data-label, e.g. its range). Dragging anywhere on the rail
-// scrubs the page; plain scrolling moves the thumb. Every [data-year] element on
+// year; the bubble shows the stop's data-label, e.g. its range). Dragging
+// anywhere on the rail scrubs the page; plain scrolling moves the thumb. Every [data-year] element on
 // the page is a stop, so the rail follows whatever the timeline renders.
 
 type Stop = { year: number; label: string; top: number; frac: number };
@@ -22,10 +22,18 @@ export default function YearScrubber() {
   const [awake, setAwake] = useState(false);
   const [dragging, setDragging] = useState(false);
   const idle = useRef<number>(undefined);
+  // While a finger is on the rail it owns the thumb: page height and rail box
+  // are frozen at touch-down (Safari's toolbar resizes the page mid-drag), and
+  // scrolling is coalesced to one scrollTo per frame. Deriving the thumb back
+  // from scroll events during a drag is what made it flicker on iOS.
+  const drag = useRef<{ max: number; rect: DOMRect } | null>(null);
+  const frame = useRef(0);
+  const pendingTop = useRef(0);
 
   const maxScroll = () => Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
 
   const measure = useCallback(() => {
+    if (drag.current) return;
     const max = maxScroll();
     // A year counts as reached once its heading clears the sticky controls.
     const offset = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--controls-h")) + 16 || 120;
@@ -65,6 +73,7 @@ export default function YearScrubber() {
 
   useEffect(() => {
     const onScroll = () => {
+      if (drag.current) return;
       setFrac(window.scrollY / maxScroll());
       setYear(yearAt(window.scrollY));
       wake();
@@ -75,16 +84,33 @@ export default function YearScrubber() {
   }, [yearAt, wake]);
 
   const scrubTo = (clientY: number) => {
-    const rect = railRef.current!.getBoundingClientRect();
+    const { max, rect } = drag.current!;
     const f = Math.min(1, Math.max(0, (clientY - rect.top) / rect.height));
-    window.scrollTo({ top: f * maxScroll(), behavior: "instant" });
+    setFrac(f);
+    setYear(yearAt(f * max));
+    pendingTop.current = f * max;
+    if (!frame.current) {
+      frame.current = requestAnimationFrame(() => {
+        frame.current = 0;
+        window.scrollTo(0, pendingTop.current);
+      });
+    }
   };
 
   const onPointerDown = (e: React.PointerEvent) => {
     e.preventDefault();
     e.currentTarget.setPointerCapture(e.pointerId);
+    drag.current = { max: maxScroll(), rect: railRef.current!.getBoundingClientRect() };
     setDragging(true);
     scrubTo(e.clientY);
+  };
+
+  const endDrag = () => {
+    if (!drag.current) return;
+    drag.current = null;
+    setDragging(false);
+    wake();
+    measure();
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -116,9 +142,9 @@ export default function YearScrubber() {
       aria-valuemax={years.length ? Math.max(...years) : undefined}
       aria-valuenow={year}
       onPointerDown={onPointerDown}
-      onPointerMove={(e) => dragging && scrubTo(e.clientY)}
-      onPointerUp={() => setDragging(false)}
-      onPointerCancel={() => setDragging(false)}
+      onPointerMove={(e) => drag.current && scrubTo(e.clientY)}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
       onKeyDown={onKeyDown}
     >
       {labels.map((s) => (

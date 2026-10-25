@@ -456,6 +456,7 @@ button {
   background: var(--ink);
   color: var(--bg);
   font: 600 14px/1 var(--font-mono), monospace;
+  white-space: nowrap;
   opacity: 0;
   transition: opacity 0.15s, transform 0.15s;
 }
@@ -702,8 +703,22 @@ button {
     opacity: 0;
   }
 
+  /* While dragging, years read clearly over any content, as in Photos. */
   .scrubber.dragging .scrubber-label {
-    opacity: 0.8;
+    opacity: 1;
+    right: 40px;
+    padding: 3px 7px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--ink);
+    background: var(--surface);
+  }
+
+  /* The bubble sits well left of the thumb, where a finger doesn't cover it. */
+  .scrubber-bubble {
+    right: 96px;
+    padding: 9px 16px;
+    font-size: 17px;
   }
 
   .scrubber-thumb {
