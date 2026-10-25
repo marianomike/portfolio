@@ -7,6 +7,7 @@ Mike Mariano's portfolio and resume at uiuxartist.com: one timeline from 2000 to
 - **Jobs, projects, education:** `src/content/career.ts` is the single source for the timeline, the resume and the project pages.
 - **A project's write-up:** `content/projects/<slug>.md`. Optional frontmatter: `role`, `tools` (list), `video` (embed URL).
 - **A project's images:** `public/work/<slug>/`. `cover.*` is the card image; every other image is the gallery, in filename order.
+- **Adding screenshots:** drop them into `screenshots/<project>/` (the slug or the title, e.g. `screenshots/beyond-the-dark/`), then run `npm run screenshots` to resize and append them to the gallery, or `npm run screenshots:publish` to also commit and push. A file named `cover.*` replaces the card image.
 
 Project URLs match the old Adobe Portfolio paths (`/run-story/`, `/star-wars-commander/`…); the old hub pages (`/zynga/`, `/disney-interactive/`, `/about/`…) redirect to the timeline.
 

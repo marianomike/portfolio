@@ -42,3 +42,7 @@ next-env.d.ts
 
 # recovered Adobe Portfolio (images/videos), kept locally only
 /_archive/
+
+# screenshots waiting to be imported (npm run screenshots)
+/screenshots/*/*
+!/screenshots/*/.gitkeep

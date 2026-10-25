@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "screenshots": "node scripts/screenshots.mjs",
+    "screenshots:publish": "node scripts/screenshots.mjs --publish"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -22,6 +24,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.28",
+    "sharp": "^0.35.5",
     "typescript": "^5"
   }
 }
