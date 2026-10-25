@@ -8,7 +8,7 @@
   --accent-ink: #fff;
   --radius: 14px;
   --gutter: clamp(16px, 4vw, 48px);
-  --year-col: 168px;
+  --range-col: 200px;
   --controls-h: 106px; /* measured live by CareerView */
 }
 
@@ -192,7 +192,7 @@ button {
   border: 1px solid var(--line);
 }
 
-/* ── Timeline ────────────────────────────────────────── */
+/* ── Timeline: chapters ──────────────────────────────── */
 
 .timeline {
   list-style: none;
@@ -200,47 +200,74 @@ button {
   padding: 0 72px 0 0; /* room for the scrubber */
 }
 
-.year-group {
+.chapter {
   display: grid;
-  grid-template-columns: var(--year-col) 1fr;
+  grid-template-columns: var(--range-col) 1fr;
   border-top: 1px solid var(--line);
+  scroll-margin-top: var(--controls-h);
 }
 
-.year {
+.range {
   position: sticky;
   top: var(--controls-h);
   align-self: start;
   margin: 0;
-  padding: 28px 0;
-  font: 400 clamp(40px, 5vw, 64px) / 1 var(--font-display), serif;
+  padding: 32px 0;
+  font: 400 clamp(44px, 5vw, 68px) / 0.95 var(--font-display), serif;
   letter-spacing: -0.02em;
 }
 
-.year-entries {
+.range span {
+  display: block;
+  margin-top: 8px;
+  font: 500 13px/1.4 var(--font-mono), monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.chapter-body {
+  padding: 40px 0 64px;
+}
+
+/* A chapter whose work is all filtered out fades. */
+.chapter[data-quiet] .range {
+  opacity: 0.3;
+}
+
+.jobs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
   gap: 8px;
-  padding: 32px 0 40px;
 }
 
-.entry {
-  scroll-margin-top: calc(var(--controls-h) + 16px);
-  padding: 0 0 28px;
+.jobs li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 12px;
+  scroll-margin-top: calc(var(--controls-h) + 24px);
 }
 
-.entry + .entry {
-  border-top: 1px dashed var(--line);
-  padding-top: 28px;
+.jobs strong {
+  font-weight: 600;
 }
 
-.entry header {
-  margin-bottom: 6px;
+.job-title {
+  color: var(--muted);
 }
 
-.company {
-  margin: 0;
-  font: 600 22px/1.25 var(--font-body), sans-serif;
-  letter-spacing: -0.01em;
+.jobs .dates {
+  margin-left: auto;
 }
+
+.jobs + .cards {
+  margin-top: 32px;
+}
+
+/* ── Shared: job and role lines (timeline and resume) ── */
 
 .kind {
   margin-left: 10px;
@@ -250,14 +277,6 @@ button {
   vertical-align: middle;
   color: var(--muted);
   border: 1px solid var(--line);
-}
-
-.roles {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 14px;
 }
 
 .role {
@@ -283,108 +302,6 @@ button {
 
 .bullets li + li {
   margin-top: 2px;
-}
-
-/* A year whose work is all filtered out fades. */
-.year-group[data-quiet] .year {
-  opacity: 0.3;
-}
-
-/* Years with only continuing roles stay short, but keep a stop on the scrubber. */
-.year-group[data-sparse] .year {
-  padding: 18px 0;
-  font-size: clamp(28px, 3.4vw, 40px);
-  color: var(--muted);
-}
-
-.year-group[data-sparse] .year-entries {
-  padding: 22px 0;
-}
-
-/* "Where I was": the jobs held at the year on screen, under the controls. */
-.where {
-  flex-basis: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 22px;
-  margin: 0;
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.where-year {
-  min-width: 56px;
-  font: 600 13px/1.6 var(--font-mono), monospace;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.where-role {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 8px;
-}
-
-.where-role strong {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-/* A job starting is one quiet line, not a block: the work is the timeline. */
-.milestones {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 6px;
-  color: var(--muted);
-}
-
-.milestones li {
-  scroll-margin-top: calc(var(--controls-h) + 24px);
-  padding-left: 18px;
-  position: relative;
-}
-
-.milestones li::before {
-  content: "";
-  position: absolute;
-  left: 3px;
-  top: 0.62em;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  border: 2px solid var(--accent);
-}
-
-.milestones strong {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-.milestones .dates {
-  margin-left: 10px;
-}
-
-.milestones + .cards {
-  margin-top: 20px;
-}
-
-.entry.dim {
-  opacity: 0.4;
-  padding-bottom: 0;
-}
-
-.entry.dim header {
-  margin-bottom: 0;
-}
-
-.entry.dim .company {
-  font-size: 16px;
-  font-weight: 500;
 }
 
 /* ── Project cards ───────────────────────────────────── */
@@ -710,20 +627,31 @@ button {
 /* ── Small screens ───────────────────────────────────── */
 
 @media (max-width: 760px) {
-  .year-group {
+  .chapter {
     grid-template-columns: 1fr;
   }
 
-  .year {
-    top: var(--controls-h);
+  /* On phones the range becomes a sticky bar above its chapter. */
+  .range {
     z-index: 5;
-    padding: 12px 0;
-    font-size: 36px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 14px 0;
+    font-size: 34px;
     background: var(--bg);
   }
 
-  .year-entries {
+  .range span {
+    margin-top: 0;
+  }
+
+  .chapter-body {
     padding-top: 8px;
+  }
+
+  .jobs .dates {
+    margin-left: 0;
   }
 
   .timeline {

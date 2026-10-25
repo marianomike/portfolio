@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { CATEGORIES, EDUCATION, EMPLOYERS, PROFILE, type Category, type Project } from "@/content/career";
-import { dateRange, employerName, monthYear, type YearGroup } from "@/lib/timeline";
+import { dateRange, employerName, year, yearRange, type ChapterGroup } from "@/lib/timeline";
 import YearScrubber from "./YearScrubber";
 
 export type Cover = { src: string; icon?: boolean };
@@ -11,15 +11,12 @@ export type Cover = { src: string; icon?: boolean };
 type View = "timeline" | "resume";
 type Filter = Category | "all";
 
-export default function CareerView({ years, covers }: { years: YearGroup[]; covers: Record<string, Cover> }) {
+export default function CareerView({ chapters, covers }: { chapters: ChapterGroup[]; covers: Record<string, Cover> }) {
   const [view, setView] = useState<View>("timeline");
   const [filter, setFilter] = useState<Filter>("all");
-  const [current, setCurrent] = useState(years[0].year);
-  const group = years.find((g) => g.year === current) ?? years[0];
-  const today = group === years[0];
 
-  // The sticky controls change height as chips wrap and the "where" line grows;
-  // the sticky year headings and the scrubber sit just below them.
+  // The sticky controls change height as the chips wrap; the sticky chapter
+  // ranges and the scrubber sit just below them.
   const controls = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = controls.current!;
@@ -53,36 +50,24 @@ export default function CareerView({ years, covers }: { years: YearGroup[]; cove
             Save as PDF
           </button>
         )}
-        {view === "timeline" && (
-          // Where I was at the year on screen: follows scrolling and the scrubber.
-          <p className="where" aria-live="polite">
-            <span className="where-year">{today ? "Today" : group.year}</span>
-            {group.held.map((r) => (
-              <span key={r.employer.id + r.role.start} className="where-role">
-                <strong>{r.employer.name}</strong> {r.role.title}
-                <span className="dates">
-                  {today ? `since ${monthYear(r.role.start)}` : dateRange(r.role.start, r.role.end)}
-                </span>
-              </span>
-            ))}
-          </p>
-        )}
       </div>
 
       {view === "timeline" ? (
         <>
           <ol className="timeline">
-            {years.map((g) => (
-              <Year key={g.year} group={g} filter={filter} covers={covers} />
+            {chapters.map((c) => (
+              <ChapterSection key={c.id} chapter={c} filter={filter} covers={covers} />
             ))}
-            <li className="year-group origin" data-year={1995}>
-              <h2 className="year">1995</h2>
-              <div className="year-entries">
-                <ul className="milestones">
+            <li className="chapter origin" data-year={1995} data-label="1995 – 2000">
+              <h2 className="range">
+                1995 <span>– 2000</span>
+              </h2>
+              <div className="chapter-body">
+                <ul className="jobs">
                   {EDUCATION.map((ed) => (
                     <li key={ed.school}>
                       <strong>{ed.school}</strong>
-                      {ed.detail && ` ${ed.detail}`}
+                      {ed.detail && <span className="job-title">{ed.detail}</span>}
                       <span className="dates">
                         {ed.start} – {ed.end}
                       </span>
@@ -92,7 +77,7 @@ export default function CareerView({ years, covers }: { years: YearGroup[]; cove
               </div>
             </li>
           </ol>
-          <YearScrubber key={filter} onYear={setCurrent} />
+          <YearScrubber key={filter} />
         </>
       ) : (
         <Resume />
@@ -105,25 +90,31 @@ function matches(project: Project, filter: Filter) {
   return filter === "all" || project.category === filter;
 }
 
-function Year({ group, filter, covers }: { group: YearGroup; filter: Filter; covers: Record<string, Cover> }) {
-  const shown = group.projects.filter((p) => matches(p, filter));
-  const quiet = filter !== "all" && shown.length === 0;
+function ChapterSection({ chapter, filter, covers }: { chapter: ChapterGroup; filter: Filter; covers: Record<string, Cover> }) {
+  const shown = chapter.projects.filter((p) => matches(p, filter));
+  const label = `${chapter.start} – ${chapter.end ?? "Present"}`;
   return (
-    <li className="year-group" data-year={group.year} data-quiet={quiet || undefined} data-sparse={shown.length === 0 || undefined}>
-      <h2 className="year">{group.year}</h2>
-      <div className="year-entries">
-        {group.started.length > 0 && (
-          <ul className="milestones">
-            {group.started.map((r) => (
-              // The newest role of each employer keeps the employer id, so old /#zynga links land.
-              <li key={r.employer.id + r.role.start} id={r.employer.roles[0] === r.role ? r.employer.id : undefined}>
-                {r.employer.roles.at(-1) !== r.role ? "New role at " : r.employer.kind === "Self-employed" ? "Started " : "Joined "}
-                <strong>{r.employer.name}</strong> · {r.role.title}
-                <span className="dates">{monthYear(r.role.start)}</span>
-              </li>
-            ))}
-          </ul>
-        )}
+    <li
+      id={chapter.id}
+      className="chapter"
+      data-year={chapter.start}
+      data-label={label}
+      data-quiet={(filter !== "all" && shown.length === 0) || undefined}
+    >
+      <h2 className="range">
+        {chapter.start} <span>– {chapter.end ?? "Present"}</span>
+      </h2>
+      <div className="chapter-body">
+        <ul className="jobs">
+          {chapter.jobs.map((j) => (
+            // Each employer keeps its id, so old /#zynga and /#disney links land here.
+            <li key={j.employer.id} id={j.employer.id}>
+              <strong>{j.employer.name}</strong>
+              <span className="job-title">{j.title}</span>
+              <span className="dates">{yearRange(j.start, j.end)}</span>
+            </li>
+          ))}
+        </ul>
         {shown.length > 0 && (
           <div className="cards">
             {shown.map((p) => (
@@ -143,7 +134,9 @@ function ProjectCard({ project, cover }: { project: Project; cover?: Cover }) {
         {cover ? <img src={cover.src} alt="" loading="lazy" /> : <span>{project.title}</span>}
       </div>
       <div className="card-text">
-        <p className="card-eyebrow">{employerName(project.employer) ?? "Side project"}</p>
+        <p className="card-eyebrow">
+          {employerName(project.employer) ?? "Side project"} · {year(project.start)}
+        </p>
         <p className="card-title">{project.title}</p>
         <p className="card-blurb">{project.blurb}</p>
       </div>

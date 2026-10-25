@@ -535,3 +535,19 @@ export const PROJECTS: Project[] = [
     blurb: "Rich interactive ads for Kia, MTV, Sprite, ESPN and more.",
   },
 ];
+
+/** The timeline's chapters, newest first. A project belongs to its employer's chapter. */
+export type Chapter = { id: string; start: string; end?: string; employers: string[] };
+
+export const CHAPTERS: Chapter[] = [
+  { id: "now", start: "2020", employers: ["finish-line-labs", "roblox"] },
+  { id: "2018", start: "2018", end: "2020", employers: ["captain", "zynga-2018"] },
+  { id: "2013", start: "2013", end: "2018", employers: ["disney"] },
+  { id: "2009", start: "2009", end: "2013", employers: ["samsung", "zynga"] },
+  {
+    id: "2000",
+    start: "2000",
+    end: "2009",
+    employers: ["akqa", "microsoft", "blackarrow", "paypal", "bgcp-2007", "composer", "convergys", "vitesse", "bgcp", "smartforce", "covad"],
+  },
+];

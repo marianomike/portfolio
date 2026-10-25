@@ -3,16 +3,17 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 // A Google Photos–style scrubber: a rail on the right edge with year labels at
-// the scroll position where each year begins. Dragging anywhere on the rail
+// the scroll position where each stop begins (a chapter, labeled by its start
+// year; the bubble shows the stop's data-label, e.g. its range). Dragging anywhere on the rail
 // scrubs the page; plain scrolling moves the thumb. Every [data-year] element on
 // the page is a stop, so the rail follows whatever the timeline renders.
 
-type Stop = { year: number; top: number; frac: number };
+type Stop = { year: number; label: string; top: number; frac: number };
 
 const LABEL_GAP = 18; // px between visible labels; closer ones are dropped, as in Photos
 const IDLE_MS = 1200;
 
-export default function YearScrubber({ onYear }: { onYear?: (year: number) => void }) {
+export default function YearScrubber() {
   const railRef = useRef<HTMLDivElement>(null);
   const [stops, setStops] = useState<Stop[]>([]);
   const [railHeight, setRailHeight] = useState(0);
@@ -30,7 +31,7 @@ export default function YearScrubber({ onYear }: { onYear?: (year: number) => vo
     const offset = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--controls-h")) + 16 || 120;
     const next = [...document.querySelectorAll<HTMLElement>("[data-year]")].map((el) => {
       const top = el.getBoundingClientRect().top + window.scrollY - offset;
-      return { year: Number(el.dataset.year), top, frac: Math.min(1, Math.max(0, top / max)) };
+      return { year: Number(el.dataset.year), label: el.dataset.label ?? el.dataset.year!, top, frac: Math.min(1, Math.max(0, top / max)) };
     });
     setStops(next);
     setRailHeight(railRef.current?.clientHeight ?? 0);
@@ -72,10 +73,6 @@ export default function YearScrubber({ onYear }: { onYear?: (year: number) => vo
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [yearAt, wake]);
-
-  useEffect(() => {
-    if (year !== undefined) onYear?.(year);
-  }, [year, onYear]);
 
   const scrubTo = (clientY: number) => {
     const rect = railRef.current!.getBoundingClientRect();
@@ -130,7 +127,7 @@ export default function YearScrubber({ onYear }: { onYear?: (year: number) => vo
         </span>
       ))}
       <span className="scrubber-thumb" style={{ top: frac * railHeight }} aria-hidden>
-        <span className="scrubber-bubble">{year}</span>
+        <span className="scrubber-bubble">{stops.find((s) => s.year === year)?.label}</span>
       </span>
     </div>
   );

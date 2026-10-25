@@ -1,4 +1,4 @@
-import { EMPLOYERS, PROJECTS, type Employer, type Project, type Role } from "@/content/career";
+import { CHAPTERS, EMPLOYERS, PROJECTS, type Chapter, type Employer, type Project } from "@/content/career";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -20,40 +20,40 @@ export function yearRange(start: string, end?: string) {
   return a === b ? `${a}` : `${a} – ${b}`;
 }
 
-export type RoleRef = { employer: Employer; role: Role };
+/** One line per employer in a chapter: first and last title, whole stint. */
+export type Job = { employer: Employer; title: string; start: string; end?: string };
 
-export type YearGroup = {
-  year: number;
-  /** Projects that came out this year: the timeline itself. */
-  projects: Project[];
-  /** Roles that began this year, marked with one line. */
-  started: RoleRef[];
-  /** Every role held at some point this year, for the "where I was" line. */
-  held: RoleRef[];
-};
+export type ChapterGroup = Chapter & { jobs: Job[]; projects: Project[] };
 
-/**
- * Every year from the first role to now, newest first, so the scrubber can stop
- * on any year even when nothing shipped in it.
- */
-export function buildTimeline(now = new Date().getFullYear()): YearGroup[] {
-  const roles: RoleRef[] = EMPLOYERS.flatMap((employer) => employer.roles.map((role) => ({ employer, role })));
-  const newestFirst = (a: RoleRef, b: RoleRef) => b.role.start.localeCompare(a.role.start);
-  const first = Math.min(...roles.map((r) => year(r.role.start)));
+// "Lead UI Designer, Mafia Wars" → "Lead UI Designer": the game is on the card.
+const baseTitle = (t: string) => t.split(",")[0];
 
-  const groups: YearGroup[] = [];
-  for (let y = now; y >= first; y--) {
-    // A role that ended in January hardly ran into that year.
-    const held = (r: RoleRef) =>
-      year(r.role.start) <= y && (!r.role.end || (year(r.role.end) >= y && r.role.end !== `${y}-01`));
-    groups.push({
-      year: y,
-      projects: PROJECTS.filter((p) => year(p.start) === y).sort((a, b) => b.start.localeCompare(a.start)),
-      started: roles.filter((r) => year(r.role.start) === y).sort(newestFirst),
-      held: roles.filter(held).sort(newestFirst),
-    });
-  }
-  return groups;
+function job(employer: Employer): Job {
+  const roles = [...employer.roles].reverse(); // oldest first
+  const first = baseTitle(roles[0].title);
+  const last = baseTitle(roles.at(-1)!.title);
+  return {
+    employer,
+    title: first === last ? last : `${first} → ${last}`,
+    start: roles[0].start,
+    end: roles.at(-1)!.end,
+  };
+}
+
+export function buildTimeline(): ChapterGroup[] {
+  return CHAPTERS.map((chapter) => {
+    const employers = EMPLOYERS.filter((e) => chapter.employers.includes(e.id));
+    // Side projects have no employer and join the chapter their date falls in.
+    const inChapter = (p: Project) =>
+      p.employer
+        ? chapter.employers.includes(p.employer)
+        : year(p.start) >= Number(chapter.start) && (!chapter.end || year(p.start) < Number(chapter.end));
+    return {
+      ...chapter,
+      jobs: employers.map(job).sort((a, b) => b.start.localeCompare(a.start)),
+      projects: PROJECTS.filter(inChapter).sort((a, b) => b.start.localeCompare(a.start)),
+    };
+  });
 }
 
 export function employerName(id?: string) {
