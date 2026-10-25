@@ -9,11 +9,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 type Stop = { year: number; top: number; frac: number };
 
-const HEADER_OFFSET = 120; // a year counts as reached once its heading clears the sticky controls
 const LABEL_GAP = 18; // px between visible labels; closer ones are dropped, as in Photos
 const IDLE_MS = 1200;
 
-export default function YearScrubber() {
+export default function YearScrubber({ onYear }: { onYear?: (year: number) => void }) {
   const railRef = useRef<HTMLDivElement>(null);
   const [stops, setStops] = useState<Stop[]>([]);
   const [railHeight, setRailHeight] = useState(0);
@@ -27,8 +26,10 @@ export default function YearScrubber() {
 
   const measure = useCallback(() => {
     const max = maxScroll();
+    // A year counts as reached once its heading clears the sticky controls.
+    const offset = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--controls-h")) + 16 || 120;
     const next = [...document.querySelectorAll<HTMLElement>("[data-year]")].map((el) => {
-      const top = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
       return { year: Number(el.dataset.year), top, frac: Math.min(1, Math.max(0, top / max)) };
     });
     setStops(next);
@@ -71,6 +72,10 @@ export default function YearScrubber() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [yearAt, wake]);
+
+  useEffect(() => {
+    if (year !== undefined) onYear?.(year);
+  }, [year, onYear]);
 
   const scrubTo = (clientY: number) => {
     const rect = railRef.current!.getBoundingClientRect();

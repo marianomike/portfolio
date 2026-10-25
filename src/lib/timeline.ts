@@ -20,46 +20,37 @@ export function yearRange(start: string, end?: string) {
   return a === b ? `${a}` : `${a} – ${b}`;
 }
 
-export type RoleRef = {
-  /** The newest role of each employer carries the employer id, so /#zynga still lands. */
-  id: string;
-  employer: Employer;
-  role: Role;
-};
+export type RoleRef = { employer: Employer; role: Role };
 
 export type YearGroup = {
   year: number;
-  /** Roles that started this year, shown in full. */
-  started: RoleRef[];
-  /** Roles from earlier years still held this year, shown as one line each. */
-  ongoing: RoleRef[];
-  /** Projects that came out this year. */
+  /** Projects that came out this year: the timeline itself. */
   projects: Project[];
+  /** Roles that began this year, marked with one line. */
+  started: RoleRef[];
+  /** Every role held at some point this year, for the "where I was" line. */
+  held: RoleRef[];
 };
 
 /**
- * Every year from the first role to now, newest first. A role is shown in full
- * in the year it started and as a one-line "still here" in each later year it
- * ran into; a project sits in the year it came out.
+ * Every year from the first role to now, newest first, so the scrubber can stop
+ * on any year even when nothing shipped in it.
  */
 export function buildTimeline(now = new Date().getFullYear()): YearGroup[] {
-  const roles: RoleRef[] = EMPLOYERS.flatMap((employer) =>
-    employer.roles.map((role, i) => ({ id: i === 0 ? employer.id : `${employer.id}-${role.start}`, employer, role })),
-  );
-  const newestFirst = (a: string, b: string) => b.localeCompare(a);
+  const roles: RoleRef[] = EMPLOYERS.flatMap((employer) => employer.roles.map((role) => ({ employer, role })));
+  const newestFirst = (a: RoleRef, b: RoleRef) => b.role.start.localeCompare(a.role.start);
   const first = Math.min(...roles.map((r) => year(r.role.start)));
 
   const groups: YearGroup[] = [];
   for (let y = now; y >= first; y--) {
-    const lastYear = (r: RoleRef) => (r.role.end ? year(r.role.end) : now);
+    // A role that ended in January hardly ran into that year.
+    const held = (r: RoleRef) =>
+      year(r.role.start) <= y && (!r.role.end || (year(r.role.end) >= y && r.role.end !== `${y}-01`));
     groups.push({
       year: y,
-      started: roles.filter((r) => year(r.role.start) === y).sort((a, b) => newestFirst(a.role.start, b.role.start)),
-      // A role that ended in January hardly ran into that year; only count it from February on.
-      ongoing: roles
-        .filter((r) => year(r.role.start) < y && lastYear(r) >= y && !(r.role.end === `${y}-01`))
-        .sort((a, b) => newestFirst(a.role.start, b.role.start)),
-      projects: PROJECTS.filter((p) => year(p.start) === y).sort((a, b) => newestFirst(a.start, b.start)),
+      projects: PROJECTS.filter((p) => year(p.start) === y).sort((a, b) => b.start.localeCompare(a.start)),
+      started: roles.filter((r) => year(r.role.start) === y).sort(newestFirst),
+      held: roles.filter(held).sort(newestFirst),
     });
   }
   return groups;
