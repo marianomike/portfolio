@@ -1,5 +1,5 @@
-## Beyond the Dark Showcase
+## Beyond the Dark: Vistech Showcase
 
-[Documentation](https://create.roblox.com/docs/resources/beyond-the-dark/user-interface)
+[Play on Roblox](https://www.roblox.com/games/7208091524/Beyond-the-Dark-Vistech-Showcase) · [How its UI was built](https://create.roblox.com/docs/resources/beyond-the-dark/user-interface)
 
-<!-- RDC Assets and the Studio UI experiments were Adobe-hosted videos: _archive/videos/roblox/ -->
+<!-- The old page also had RDC Assets and Studio UI experiments as Adobe-hosted videos: _archive/videos/roblox/ -->

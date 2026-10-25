@@ -443,12 +443,15 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "roblox",
-    title: "Beyond the Dark & Studio UI",
-    start: "2020-12",
+    title: "Beyond the Dark",
+    start: "2021-08",
     employer: "roblox",
-    category: "tools",
-    blurb: "UI for the Beyond the Dark showcase, RDC assets and UI experiments in Roblox Studio.",
-    links: [{ label: "Beyond the Dark docs", url: "https://create.roblox.com/docs/resources/beyond-the-dark/user-interface" }],
+    category: "games",
+    blurb: "The Vistech Showcase, a Roblox experience whose UI became a documented resource for creators.",
+    links: [
+      { label: "Play on Roblox", url: "https://www.roblox.com/games/7208091524/Beyond-the-Dark-Vistech-Showcase" },
+      { label: "UI docs", url: "https://create.roblox.com/docs/resources/beyond-the-dark/user-interface" },
+    ],
   },
   {
     slug: "button-designer",
