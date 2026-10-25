@@ -471,22 +471,6 @@ export const PROJECTS: Project[] = [
     links: [{ label: "streamcaptain.com", url: "https://streamcaptain.com" }],
   },
   {
-    slug: "the-game-ux-interview-series",
-    title: "The Game UX Interview Series",
-    start: "2018-03",
-    category: "talks",
-    blurb: "A Medium publication where each game UX interviewee conducts the next interview, plus a 400+ member community.",
-    links: [{ label: "Read on Medium", url: "https://medium.com/game-ux-interviews" }],
-  },
-  {
-    slug: "prototyping-ui-in-unity-tutorial",
-    title: "Prototyping UI in Unity",
-    start: "2018-01",
-    category: "talks",
-    blurb: "A tutorial series that teaches designers without game or 3D experience to prototype UI in Unity.",
-    links: [{ label: "Read on Medium", url: "https://medium.com/@marianomike/prototyping-ui-in-unity-introduction-db12458020ae" }],
-  },
-  {
     slug: "game-of-thrones-slots-casino",
     title: "Game of Thrones Slots Casino",
     start: "2018-11",

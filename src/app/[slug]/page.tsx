@@ -12,6 +12,9 @@ const ALIASES: Record<string, string> = {
   "disney-interactive": "/#disney",
   "sketch-plugin-duplicate-symbol": "/sketch-plugins/",
   "sketch-plugin-organize-symbols": "/sketch-plugins/",
+  // Removed from the portfolio; old links go to the timeline.
+  "the-game-ux-interview-series": "/",
+  "prototyping-ui-in-unity-tutorial": "/",
   projects: "/",
   about: "/",
   contact: "/",
