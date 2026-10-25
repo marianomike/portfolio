@@ -540,7 +540,8 @@ export const PROJECTS: Project[] = [
 export type Chapter = { id: string; start: string; end?: string; employers: string[] };
 
 export const CHAPTERS: Chapter[] = [
-  { id: "now", start: "2020", employers: ["finish-line-labs", "roblox"] },
+  { id: "finish-line-labs-chapter", start: "2025", employers: ["finish-line-labs"] },
+  { id: "roblox-chapter", start: "2020", employers: ["roblox"] },
   { id: "2018", start: "2018", end: "2020", employers: ["captain", "zynga-2018"] },
   { id: "2013", start: "2013", end: "2018", employers: ["disney"] },
   { id: "2009", start: "2009", end: "2013", employers: ["samsung", "zynga"] },
