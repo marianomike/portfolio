@@ -432,7 +432,7 @@ const ALL_PROJECTS: Project[] = [
     employer: "finish-line-labs",
     category: "apps",
     blurb:
-      "Run stats from Strava or Apple Health on top of your photos and videos, native on iOS and Android. 20k+ iOS downloads.",
+      "Run stats from Strava or Apple Health on top of your photos and videos, native on iOS and Android. 47k+ iOS and 32k+ Android downloads.",
     links: [
       { label: "App Store", url: "https://apps.apple.com/us/app/run-story/id6737940528" },
       { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.uiuxartist.runstory.release" },
