@@ -430,16 +430,25 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "style-editor",
+    title: "Style Editor",
+    start: "2025-05",
+    employer: "roblox",
+    category: "tools",
+    blurb: "A no-code tool in Roblox Studio for creating and managing UI styles, design tokens and themes. Shipped with UI Styling.",
+    links: [
+      { label: "Announcement on the DevForum", url: "https://devforum.roblox.com/t/studio-beta-introducing-ui-styling/3660722" },
+      { label: "Docs", url: "https://create.roblox.com/docs/ui/styling" },
+    ],
+  },
+  {
     slug: "roblox",
-    title: "Style Editor & Studio UI",
+    title: "Beyond the Dark & Studio UI",
     start: "2020-12",
     employer: "roblox",
     category: "tools",
-    blurb: "The Style Editor for UI styles, design tokens and themes in Roblox Studio, plus RDC, the Beyond the Dark showcase and UI experiments.",
-    links: [
-      { label: "UI Styling on the DevForum", url: "https://devforum.roblox.com/t/studio-beta-introducing-ui-styling/3660722" },
-      { label: "Beyond the Dark docs", url: "https://create.roblox.com/docs/resources/beyond-the-dark/user-interface" },
-    ],
+    blurb: "UI for the Beyond the Dark showcase, RDC assets and UI experiments in Roblox Studio.",
+    links: [{ label: "Beyond the Dark docs", url: "https://create.roblox.com/docs/resources/beyond-the-dark/user-interface" }],
   },
   {
     slug: "button-designer",
