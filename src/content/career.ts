@@ -430,6 +430,18 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "input-action-manager",
+    title: "Input Action Manager",
+    start: "2026-07",
+    employer: "roblox",
+    category: "tools",
+    blurb: "A visual editor in Roblox Studio for building and auditing an experience's input: every context, action and platform binding in one table.",
+    links: [
+      { label: "Announcement on the DevForum", url: "https://devforum.roblox.com/t/studio-beta-input-action-manager/4737890" },
+      { label: "Docs", url: "https://create.roblox.com/docs/input/input-action-system#input-action-manager" },
+    ],
+  },
+  {
     slug: "style-editor",
     title: "Style Editor",
     start: "2025-05",
