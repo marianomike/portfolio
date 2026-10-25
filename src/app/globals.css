@@ -770,3 +770,38 @@ button {
     text-decoration: none;
   }
 }
+
+/* ── About ───────────────────────────────────────────── */
+
+.about {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) 120px;
+}
+
+.about-head {
+  padding: clamp(48px, 9vw, 112px) 0 clamp(32px, 5vw, 56px);
+}
+
+.about-head h1 {
+  margin: 0 0 28px;
+  font: 400 clamp(44px, 7.5vw, 96px) / 0.98 var(--font-display), serif;
+  letter-spacing: -0.02em;
+}
+
+.about-head .lede + .lede {
+  margin-top: 18px;
+}
+
+/* Masonry columns keep portrait and landscape photos at their own shapes. */
+.about-photos {
+  columns: 3 260px;
+  column-gap: 16px;
+}
+
+.about-photos img {
+  width: 100%;
+  margin-bottom: 16px;
+  border-radius: var(--radius);
+  break-inside: avoid;
+}

@@ -44,8 +44,11 @@ export type Project = {
 export const PROFILE = {
   name: "Mike Mariano",
   headline: "Designer & developer",
-  intro:
-    "Designing interactive experiences since 2000 — from Flash courseware to Star Wars mobile games to the UI engine inside Roblox. Lately I design and build my own apps too.",
+  // The About page, word for word from the old site; the first paragraph is also the site description.
+  about: [
+    "I'm a designer and developer from the Bay Area with over 25 years of experience in interactive experiences, game development, software and apps. I've worked at large corporations and tiny startups. I'm currently a Senior Product Designer at Roblox on the Engine Interactivity team.",
+    "When I'm not working, you can find me traveling with my family, taking photos of my daughters at their various competitions or trail running in my hometown at Mission Peak in Fremont, CA.",
+  ],
   location: "Fremont, California",
   links: [
     { label: "LinkedIn", url: "https://www.linkedin.com/in/marianomike" },

@@ -16,7 +16,6 @@ const ALIASES: Record<string, string> = {
   "the-game-ux-interview-series": "/",
   "prototyping-ui-in-unity-tutorial": "/",
   projects: "/",
-  about: "/",
   contact: "/",
 };
 

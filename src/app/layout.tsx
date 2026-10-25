@@ -11,7 +11,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 export const metadata: Metadata = {
   metadataBase: new URL("https://uiuxartist.com"),
   title: { default: `${PROFILE.name} — ${PROFILE.headline}`, template: `%s — ${PROFILE.name}` },
-  description: PROFILE.intro,
+  description: PROFILE.about[0],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -23,6 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             {PROFILE.name}
           </Link>
           <div className="site-links">
+            <Link href="/about/">About</Link>
             {PROFILE.links.map((l) => (
               <a key={l.url} href={l.url}>
                 {l.label}
