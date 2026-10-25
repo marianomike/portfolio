@@ -25,7 +25,6 @@ export default function Home() {
           <br />
           <em>25+ years</em> of games, apps & tools.
         </h1>
-        <p className="lede">{PROFILE.intro}</p>
       </header>
       <CareerView chapters={chapters} covers={covers} />
     </main>
