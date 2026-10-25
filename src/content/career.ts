@@ -518,7 +518,7 @@ export const PROJECTS: Project[] = [
     employer: "roblox",
     category: "talks",
     blurb:
-      "A UX Summit session on what succeeding as a designer really takes: work ethic, understanding your user, relationships and believing in yourself.",
+      "My UX Summit talk, It's Not Just About Design: Universal Approaches to Designing in a Collaborative Environment.",
     links: [{ label: "Watch on GDC Vault", url: "https://gdcvault.com/play/1027844/UX-Summit-It-s-Not" }],
   },
   {
