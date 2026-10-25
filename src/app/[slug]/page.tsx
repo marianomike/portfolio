@@ -52,7 +52,7 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <main className="project">
-      <Link href={`/#${employer?.id ?? `side-${project.start.slice(0, 4)}`}`} className="back">
+      <Link href={`/#${slug}`} className="back">
         ← Timeline
       </Link>
       <header className="project-head">

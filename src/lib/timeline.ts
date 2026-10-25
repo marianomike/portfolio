@@ -1,8 +1,4 @@
-import { EMPLOYERS, PROJECTS, type Employer, type Project } from "@/content/career";
-
-export type Entry =
-  | { kind: "employer"; id: string; start: string; end?: string; employer: Employer; projects: Project[] }
-  | { kind: "side"; id: string; start: string; end?: string; projects: Project[] };
+import { EMPLOYERS, PROJECTS, type Employer, type Project, type Role } from "@/content/career";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -24,29 +20,51 @@ export function yearRange(start: string, end?: string) {
   return a === b ? `${a}` : `${a} – ${b}`;
 }
 
-/** Newest first. An employer spans its roles; side projects are grouped by the year they started. */
-export function buildTimeline(): Entry[] {
-  const entries: Entry[] = EMPLOYERS.map((employer) => {
-    const starts = employer.roles.map((r) => r.start).sort();
-    const ends = employer.roles.map((r) => r.end);
-    return {
-      kind: "employer" as const,
-      id: employer.id,
-      start: starts[0],
-      end: ends.includes(undefined) ? undefined : ends.sort().at(-1),
-      employer,
-      projects: PROJECTS.filter((p) => p.employer === employer.id).sort((a, b) => b.start.localeCompare(a.start)),
-    };
-  });
-  const side = new Map<number, Project[]>();
-  for (const project of PROJECTS.filter((p) => !p.employer)) {
-    const y = year(project.start);
-    side.set(y, [...(side.get(y) ?? []), project]);
+export type RoleRef = {
+  /** The newest role of each employer carries the employer id, so /#zynga still lands. */
+  id: string;
+  employer: Employer;
+  role: Role;
+};
+
+export type YearGroup = {
+  year: number;
+  /** Roles that started this year, shown in full. */
+  started: RoleRef[];
+  /** Roles from earlier years still held this year, shown as one line each. */
+  ongoing: RoleRef[];
+  /** Projects that came out this year. */
+  projects: Project[];
+};
+
+/**
+ * Every year from the first role to now, newest first. A role is shown in full
+ * in the year it started and as a one-line "still here" in each later year it
+ * ran into; a project sits in the year it came out.
+ */
+export function buildTimeline(now = new Date().getFullYear()): YearGroup[] {
+  const roles: RoleRef[] = EMPLOYERS.flatMap((employer) =>
+    employer.roles.map((role, i) => ({ id: i === 0 ? employer.id : `${employer.id}-${role.start}`, employer, role })),
+  );
+  const newestFirst = (a: string, b: string) => b.localeCompare(a);
+  const first = Math.min(...roles.map((r) => year(r.role.start)));
+
+  const groups: YearGroup[] = [];
+  for (let y = now; y >= first; y--) {
+    const lastYear = (r: RoleRef) => (r.role.end ? year(r.role.end) : now);
+    groups.push({
+      year: y,
+      started: roles.filter((r) => year(r.role.start) === y).sort((a, b) => newestFirst(a.role.start, b.role.start)),
+      // A role that ended in January hardly ran into that year; only count it from February on.
+      ongoing: roles
+        .filter((r) => year(r.role.start) < y && lastYear(r) >= y && !(r.role.end === `${y}-01`))
+        .sort((a, b) => newestFirst(a.role.start, b.role.start)),
+      projects: PROJECTS.filter((p) => year(p.start) === y).sort((a, b) => newestFirst(a.start, b.start)),
+    });
   }
-  for (const [y, projects] of side) {
-    const start = projects.map((p) => p.start).sort()[0];
-    entries.push({ kind: "side", id: `side-${y}`, start, projects });
-  }
-  // Current roles sort by start too, so Finish Line Labs (2025) leads Roblox (2020).
-  return entries.sort((a, b) => b.start.localeCompare(a.start));
+  return groups;
+}
+
+export function employerName(id?: string) {
+  return EMPLOYERS.find((e) => e.id === id)?.name;
 }

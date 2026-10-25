@@ -4,14 +4,14 @@ import { projectMedia } from "@/lib/projects";
 import { buildTimeline } from "@/lib/timeline";
 
 export default function Home() {
-  const entries = buildTimeline();
+  const years = buildTimeline();
   const covers: Record<string, Cover> = {};
   for (const p of PROJECTS) {
     const { cover, icon } = projectMedia(p.slug);
     if (cover) covers[p.slug] = { src: cover };
     else if (icon) covers[p.slug] = { src: icon, icon: true };
   }
-  const firstYear = Number(entries.at(-1)!.start.slice(0, 4));
+  const firstYear = years.at(-1)!.year;
 
   return (
     <main className="home">
@@ -26,7 +26,7 @@ export default function Home() {
         </h1>
         <p className="lede">{PROFILE.intro}</p>
       </header>
-      <CareerView entries={entries} covers={covers} />
+      <CareerView years={years} covers={covers} />
     </main>
   );
 }
