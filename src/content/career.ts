@@ -49,7 +49,7 @@ export const PROFILE = {
   location: "Fremont, California",
   links: [
     { label: "LinkedIn", url: "https://www.linkedin.com/in/marianomike" },
-    { label: "GitHub", url: "https://github.com/mikemarianodesign" },
+    { label: "GitHub", url: "https://github.com/marianomike" },
   ] as Link[],
 };
 
