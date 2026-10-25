@@ -39,6 +39,8 @@ export type Project = {
   category: Category;
   blurb: string;
   links?: Link[];
+  /** Kept out of the site (no card, no page) until it's ready to show. */
+  hidden?: boolean;
 };
 
 export const PROFILE = {
@@ -360,9 +362,10 @@ export const EDUCATION = [
 
 // TODO(recovery): years marked with the old site's archive dates are
 // provisional until the Wayback pages are read.
-export const PROJECTS: Project[] = [
+const ALL_PROJECTS: Project[] = [
   {
     slug: "dusk-dos",
+    hidden: true, // until the store review approves it
     title: "Dusk Dos",
     start: "2026-10",
     employer: "finish-line-labs",
@@ -372,6 +375,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "pusoy-dos",
+    hidden: true, // until the store review approves it
     title: "Pusoy Dos!",
     start: "2026-10",
     employer: "finish-line-labs",
@@ -658,6 +662,9 @@ export const PROJECTS: Project[] = [
     blurb: "Rich media banners, homepage takeovers and microsites for Got Milk?, Kia, Sprite, Amway and more.",
   },
 ];
+
+/** Everything the site shows. */
+export const PROJECTS = ALL_PROJECTS.filter((p) => !p.hidden);
 
 /** The timeline's chapters, newest first. A project belongs to its employer's chapter. */
 export type Chapter = { id: string; start: string; end?: string; employers: string[] };
