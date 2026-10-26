@@ -414,6 +414,7 @@ const ALL_PROJECTS: Project[] = [
     links: [
       { label: "App Store", url: "https://apps.apple.com/us/app/run-visuals/id6759010004" },
       { label: "Google Play", url: "https://play.google.com/store/apps/details?id=info.finishlinelabs.runcards" },
+      { label: "Instagram", url: "https://www.instagram.com/runvisuals/" },
     ],
   },
   {
@@ -423,7 +424,10 @@ const ALL_PROJECTS: Project[] = [
     employer: "finish-line-labs",
     category: "apps",
     blurb: "Combines photos and videos into one shareable video, with simple layouts and transitions that keep the focus on the content.",
-    links: [{ label: "App Store", url: "https://apps.apple.com/us/app/media-stitch/id6751826519" }],
+    links: [
+      { label: "App Store", url: "https://apps.apple.com/us/app/media-stitch/id6751826519" },
+      { label: "Instagram", url: "https://www.instagram.com/mediastitch/" },
+    ],
   },
   {
     slug: "run-story",
@@ -436,6 +440,7 @@ const ALL_PROJECTS: Project[] = [
     links: [
       { label: "App Store", url: "https://apps.apple.com/us/app/run-story/id6737940528" },
       { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.uiuxartist.runstory.release" },
+      { label: "Instagram", url: "https://www.instagram.com/madewithrunstory/" },
     ],
   },
   {
