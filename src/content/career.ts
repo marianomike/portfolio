@@ -497,6 +497,14 @@ const ALL_PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "studio-ui-experiments",
+    title: "UI Experiments in Roblox Studio",
+    start: "2022-11",
+    employer: "roblox",
+    category: "tools",
+    blurb: "Interactive UI prototypes built and recorded in Roblox Studio.",
+  },
+  {
     slug: "roblox",
     title: "Beyond the Dark",
     start: "2021-08",

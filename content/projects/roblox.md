@@ -10,12 +10,6 @@
 <video src="/video/roblox/03.mp4" poster="/video/roblox/03.jpg" controls playsinline preload="none"></video>
 </div>
 
-## UI experiments in Roblox Studio
-
-<div class="clips">
-<video src="/video/roblox/04.mp4" poster="/video/roblox/04.jpg" controls playsinline preload="none"></video>
-</div>
-
 ## RDC assets
 
 <div class="clips">
