@@ -22,5 +22,3 @@ It shipped as a Studio beta in July 2026 on top of the Input Action System, whic
 ![](/work/input-action-manager/df-04.jpg)
 ![](/work/input-action-manager/df-05.jpg)
 ![](/work/input-action-manager/df-06.gif)
-
-<div class="video"><iframe src="https://www.youtube.com/embed/Fg-Ksoa7b-s" loading="lazy" allowfullscreen></iframe></div>
