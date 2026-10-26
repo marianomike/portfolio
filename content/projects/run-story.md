@@ -9,6 +9,13 @@ Run Story is a native iOS and native Android app that allows a user to customize
 ![](/work/run-story/07.jpg)
 ![](/work/run-story/08.jpg)
 
+## Example videos made with it
+
+<div class="clips portrait">
+<video src="/video/run-story/01.mp4" poster="/video/run-story/01.jpg" controls playsinline preload="none"></video>
+<video src="/video/run-story/02.mp4" poster="/video/run-story/02.jpg" controls playsinline preload="none"></video>
+</div>
+
 ## Example images made with it
 
 ![](/work/run-story/09.jpg)

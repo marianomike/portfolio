@@ -14,6 +14,14 @@ As Principal UX Designer within the Casino/Match-3 org at Zynga, I was part of a
 ![](/work/game-of-thrones-slots-casino/04.jpg)
 ![](/work/game-of-thrones-slots-casino/05.jpg)
 
+## Prototypes
+
+<div class="clips">
+<video src="/video/game-of-thrones-slots-casino/01.mp4" poster="/video/game-of-thrones-slots-casino/01.jpg" controls playsinline preload="none"></video>
+<video src="/video/game-of-thrones-slots-casino/02.mp4" poster="/video/game-of-thrones-slots-casino/02.jpg" controls playsinline preload="none"></video>
+<video src="/video/game-of-thrones-slots-casino/03.mp4" poster="/video/game-of-thrones-slots-casino/03.jpg" controls playsinline preload="none"></video>
+</div>
+
 ## Wireframes and Flows
 
 ![](/work/game-of-thrones-slots-casino/06.jpg)

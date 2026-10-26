@@ -6,6 +6,12 @@ Star Wars Rivals is a mobile third person shooter released on iOS and Android in
 
 Set the visual style and direction of the UI/UX, Define UI/UX Process and develop UI pipeline tools, Mentor and manage 2 Senior Designers, providing guidance and detailed style guides to ensure consistency and quality, Partner with other disciplines (Production, Product, Game Design Engineering) to set sprint goals and determine scope, develop features that drive revenue and retention, and ensure UI is properly implemented and optimized, Green-lighting, pre-pro, live-ops and content/feature releases
 
+## Gameplay video
+
+<div class="clips">
+<video src="/video/star-wars-rivals/01.mp4" poster="/video/star-wars-rivals/01.jpg" controls playsinline preload="none"></video>
+</div>
+
 ## Screens I designed and implemented in Unity
 
 ![](/work/star-wars-rivals/01.jpg)
@@ -42,3 +48,12 @@ Set the visual style and direction of the UI/UX, Define UI/UX Process and develo
 ![](/work/star-wars-rivals/20.jpg)
 ![](/work/star-wars-rivals/21.jpg)
 ![](/work/star-wars-rivals/22.jpg)
+
+## Prototyping in Principle and Flinto
+
+<div class="clips">
+<video src="/video/star-wars-rivals/02.mp4" poster="/video/star-wars-rivals/02.jpg" controls playsinline preload="none"></video>
+<video src="/video/star-wars-rivals/03.mp4" poster="/video/star-wars-rivals/03.jpg" controls playsinline preload="none"></video>
+<video src="/video/star-wars-rivals/04.mp4" poster="/video/star-wars-rivals/04.jpg" controls playsinline preload="none"></video>
+<video src="/video/star-wars-rivals/05.mp4" poster="/video/star-wars-rivals/05.jpg" controls playsinline preload="none"></video>
+</div>

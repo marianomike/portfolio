@@ -18,6 +18,10 @@ As a Lead UI Designer at Disney for almost 5 years, I've participated in multipl
 
 One of the most time consuming processes in game production is getting UI into Unity. It typically involves a number of manual steps and duplication of work. So I wrote this tool in Javascript and C# that simplifies the process of implementing UI in Unity. Using the scripting system in Illustrator, a user can export all their UI textures and it's layout in XML with a simple click of a button. Unity then reads those assets to recreate the UI. Below is a sample of how it works.
 
+<div class="clips">
+<video src="/video/disney-lucasfilm-games/01.mp4" poster="/video/disney-lucasfilm-games/01.jpg" controls playsinline preload="none"></video>
+</div>
+
 ## Various UI exploration done in Illustrator
 
 ![](/work/disney-lucasfilm-games/06.jpg)

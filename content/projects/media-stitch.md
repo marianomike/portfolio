@@ -7,3 +7,10 @@ Media Stitch is an iOS app that combines photos and videos into a shareable vide
 ![](/work/media-stitch/05.jpg)
 ![](/work/media-stitch/06.jpg)
 ![](/work/media-stitch/07.jpg)
+
+## Example exported videos
+
+<div class="clips portrait">
+<video src="/video/media-stitch/01.mp4" poster="/video/media-stitch/01.jpg" controls playsinline preload="none"></video>
+<video src="/video/media-stitch/02.mp4" poster="/video/media-stitch/02.jpg" controls playsinline preload="none"></video>
+</div>

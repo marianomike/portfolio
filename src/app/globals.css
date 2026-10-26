@@ -648,6 +648,25 @@ button {
   margin: 24px 0;
 }
 
+/* Self-hosted clips: landscape ones stack full width, portrait ones (phone
+   recordings) sit side by side like phone screenshots. */
+.clips {
+  display: grid;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.clips.portrait {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  align-items: start;
+}
+
+.clips video {
+  width: 100%;
+  border-radius: var(--radius);
+  background: #000;
+}
+
 .gallery {
   display: grid;
   gap: 16px;

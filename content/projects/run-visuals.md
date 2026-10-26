@@ -11,6 +11,20 @@ Run Visuals is an iOS and Android app that uses running data to create downloada
 ![](/work/run-visuals/09.jpg)
 ![](/work/run-visuals/10.jpg)
 
+## Walkthrough video
+
+<div class="clips portrait">
+<video src="/video/run-visuals/01.mp4" poster="/video/run-visuals/01.jpg" controls playsinline preload="none"></video>
+</div>
+
+## Example exported videos
+
+<div class="clips portrait">
+<video src="/video/run-visuals/02.mp4" poster="/video/run-visuals/02.jpg" controls playsinline preload="none"></video>
+<video src="/video/run-visuals/03.mp4" poster="/video/run-visuals/03.jpg" controls playsinline preload="none"></video>
+<video src="/video/run-visuals/04.mp4" poster="/video/run-visuals/04.jpg" controls playsinline preload="none"></video>
+</div>
+
 ## Example exported images
 
 ![](/work/run-visuals/11.png)
