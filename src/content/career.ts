@@ -375,13 +375,13 @@ const ALL_PROJECTS: Project[] = [
   },
   {
     slug: "pusoy-dos",
-    hidden: true, // until the store review approves it
     title: "Pusoy Dos!",
     start: "2026-10",
     employer: "finish-line-labs",
     category: "games",
     blurb:
       "The Filipino card game for iPhone and Android, with a journey through Philippine history and its real heroes on the court cards.",
+    links: [{ label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.finishlinelabs.pusoydos" }],
   },
   {
     slug: "play-world",
