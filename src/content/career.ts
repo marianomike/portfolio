@@ -422,7 +422,7 @@ const ALL_PROJECTS: Project[] = [
     employer: "finish-line-labs",
     category: "apps",
     blurb:
-      "Custom graphics, stickers and animated videos from Strava, Garmin and Apple Health data, on iOS and Android.",
+      "Your runs in 3D: Strava, Garmin and Apple Health routes on real terrain, with weather, splits and stickers to share. Rebuilt in Unity for 2.0.",
     links: [
       { label: "App Store", url: "https://apps.apple.com/us/app/run-visuals/id6759010004" },
       { label: "Google Play", url: "https://play.google.com/store/apps/details?id=info.finishlinelabs.runcards" },
