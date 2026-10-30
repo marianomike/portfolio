@@ -2,6 +2,12 @@ Pusoy Dos! is the Filipino card game for iPhone and Android. Play a quick match 
 
 The game was built in Unity with Claude Code. The look, the court card paintings, the journey maps and the music came out of a concept lab I built alongside it.
 
+## Reel
+
+<div class="clips portrait">
+<video src="/video/pusoy-dos/reel.mp4" poster="/video/pusoy-dos/reel.jpg" controls playsinline preload="none"></video>
+</div>
+
 ## Screens
 
 ![](/work/pusoy-dos/01.jpg)
