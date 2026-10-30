@@ -16,6 +16,9 @@ const ALIASES: Record<string, string> = {
   "the-game-ux-interview-series": "/",
   "prototyping-ui-in-unity-tutorial": "/",
   projects: "/",
+  // Merged into one Garmin Watch Faces page.
+  roadwork: "/garmin-watch-faces/",
+  revital: "/garmin-watch-faces/",
   contact: "/",
 };
 
