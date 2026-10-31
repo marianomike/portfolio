@@ -365,13 +365,13 @@ export const EDUCATION = [
 const ALL_PROJECTS: Project[] = [
   {
     slug: "dusk-dos",
-    hidden: true, // until the store review approves it
     title: "Dusk Dos",
     start: "2026-10",
     employer: "finish-line-labs",
     category: "games",
     blurb:
       "Pusoy Dos as a roguelike: climb the Isles of Dusk table by table against creatures of Philippine folklore, each bending one rule.",
+    links: [{ label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.finishlinelabs.dosdusk" }],
   },
   {
     slug: "pusoy-dos",
