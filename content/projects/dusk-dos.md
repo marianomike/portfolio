@@ -2,6 +2,12 @@ Dusk Dos is Pusoy Dos as a roguelike, for iPhone and Android. You climb the Isle
 
 The game was built in Unity with Claude Code. The look, the characters, the island maps and the tables came out of a concept lab I built alongside it: approve one look and it paints every asset in it.
 
+## Gameplay
+
+<div class="clips portrait">
+<video src="/video/dusk-dos/gameplay.mp4" poster="/video/dusk-dos/gameplay.jpg" controls playsinline preload="none"></video>
+</div>
+
 ## Screens
 
 ![](/work/dusk-dos/01.jpg)
