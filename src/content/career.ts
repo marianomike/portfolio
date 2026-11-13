@@ -381,7 +381,10 @@ const ALL_PROJECTS: Project[] = [
     category: "games",
     blurb:
       "The Filipino card game for iPhone and Android, with a journey through Philippine history and its real heroes on the court cards.",
-    links: [{ label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.finishlinelabs.pusoydos" }],
+    links: [
+      { label: "App Store", url: "https://apps.apple.com/us/app/pusoy-dos/id6825858971" },
+      { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.finishlinelabs.pusoydos" },
+    ],
   },
   {
     slug: "play-world",
