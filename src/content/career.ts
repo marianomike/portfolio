@@ -364,6 +364,16 @@ export const EDUCATION = [
 // provisional until the Wayback pages are read.
 const ALL_PROJECTS: Project[] = [
   {
+    slug: "tinikling",
+    title: "Tinikling",
+    start: "2026-11",
+    employer: "finish-line-labs",
+    category: "games",
+    blurb:
+      "A rhythm game of the Philippine bamboo dance: your fingers are the feet, stepping in and out of the clapping poles to Filipino folk songs.",
+    links: [{ label: "App Store", url: "https://apps.apple.com/us/app/tinikling/id6832790945" }],
+  },
+  {
     slug: "dusk-dos",
     title: "Dusk Dos",
     start: "2026-10",
