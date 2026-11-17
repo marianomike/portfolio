@@ -371,7 +371,10 @@ const ALL_PROJECTS: Project[] = [
     category: "games",
     blurb:
       "A rhythm game of the Philippine bamboo dance: your fingers are the feet, stepping in and out of the clapping poles to Filipino folk songs.",
-    links: [{ label: "App Store", url: "https://apps.apple.com/us/app/tinikling/id6832790945" }],
+    links: [
+      { label: "App Store", url: "https://apps.apple.com/us/app/tinikling/id6832790945" },
+      { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.finishlinelabs.tinikling" },
+    ],
   },
   {
     slug: "dusk-dos",
